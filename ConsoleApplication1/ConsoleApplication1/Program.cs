@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using ScrapySharp.Extensions;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace ConsoleApplication1
 {
@@ -12,7 +14,121 @@ namespace ConsoleApplication1
 	{
 		static void Main(string[] args)
 		{
-			TestLoad2();
+			MostFrequentWords();
+			//TestLoad2();
+		}
+
+		public static void MostFrequentWords()
+		{
+			var url = "http://www.wheninmanila.com/5-things-to-do-in-bonifacio-global-city/";
+			var webGet = new HtmlWeb();
+			HtmlDocument document = webGet.Load(url);
+
+			if (document != null)
+			{ 
+				var obj = Regex.Split(RemoveUnwantedTags(document).ToLower(), @"\W+")
+					.Where(s => s.Length > 3)
+					.GroupBy(s => s)
+					.OrderByDescending(g => g.Count());
+
+				foreach (var item in obj)
+				{
+					if (item.Count() > 2)
+						Console.WriteLine("Word: " + item.Key + ", Count: " + item.Count());
+				}
+
+				Console.ReadLine();
+			}
+		}
+
+		public static string ExtractText(string html)
+		{
+			if (html == null)
+			{
+				throw new ArgumentNullException("html");
+			}
+
+			HtmlDocument doc = new HtmlDocument();
+			doc.LoadHtml(html);
+
+			var chunks = new List<string>();
+
+			foreach (var item in doc.DocumentNode.DescendantsAndSelf())
+			{
+				if (item.NodeType == HtmlNodeType.Text)
+				{
+					if (item.InnerText.Trim() != "")
+					{
+						chunks.Add(item.InnerText.Trim());
+					}
+				}
+			}
+			return String.Join(" ", chunks);
+		}
+
+		public static string RemoveHTMLTags(string content)
+		{
+			var cleaned = string.Empty;
+			try
+			{
+				string textOnly = string.Empty;
+				Regex tagRemove = new Regex(@"<[^>]*(>|$)");
+				Regex compressSpaces = new Regex(@"[\s\r\n]+");
+				textOnly = tagRemove.Replace(content, string.Empty);
+				textOnly = compressSpaces.Replace(textOnly, " ");
+				cleaned = textOnly;
+			}
+			catch
+			{
+				//A tag is probably not closed. fallback to regex string clean.
+
+			}
+
+			return HttpUtility.HtmlDecode(cleaned);
+		}
+
+		internal static string RemoveUnwantedTags(HtmlDocument data)
+		{
+			//if (string.IsNullOrEmpty(data)) return string.Empty;
+
+			//var document = new HtmlDocument();
+			//document.LoadHtml(data);
+
+			// remove scripts and styles
+			data.DocumentNode.Descendants()
+				.Where(n => n.Name == "script" || n.Name == "style" || n.Name == "#script")
+				.ToList()
+				.ForEach(n => n.Remove());
+
+			return RemoveHTMLTags(data.DocumentNode.InnerText);
+
+			//var acceptableTags = new String[] { }; //"strong", "em", "u"
+
+			//var nodes = new Queue<HtmlNode>(data.DocumentNode.SelectNodes("./*|./text()"));
+			//while (nodes.Count > 0)
+			//{
+			//	var node = nodes.Dequeue();
+			//	var parentNode = node.ParentNode;
+
+			//	if (!acceptableTags.Contains(node.Name) && node.Name != "#text")
+			//	{
+			//		var childNodes = node.SelectNodes("./*|./text()");
+
+			//		if (childNodes != null)
+			//		{
+			//			foreach (var child in childNodes)
+			//			{
+			//				nodes.Enqueue(child);
+			//				parentNode.InsertBefore(child, node);
+			//			}
+			//		}
+
+			//		parentNode.RemoveChild(node);
+
+			//	}
+			//}
+
+			//return data.DocumentNode.InnerHtml;
 		}
 
 		public static void TestLoad2()
