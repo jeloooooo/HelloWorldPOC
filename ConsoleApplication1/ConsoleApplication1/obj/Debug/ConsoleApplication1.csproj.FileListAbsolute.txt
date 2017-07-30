@@ -1,0 +1,26 @@
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\HtmlAgilityPack.dll
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\HtmlAgilityPack.pdb
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\HtmlAgilityPack.xml
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\FSharp.Core.dll
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ScrapySharp.Core.dll
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ScrapySharpAsync.dll
+c:\users\ap186046\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\FSharp.Core.xml
+C:\Users\AP186046\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\FSharp.Core.dll
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\HtmlAgilityPack.dll
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\ScrapySharp.Core.dll
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\ScrapySharpAsync.dll
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\FSharp.Core.xml
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\HtmlAgilityPack.pdb
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\bin\Debug\HtmlAgilityPack.xml
+C:\HelloWorld\HelloWorldPOC\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
