@@ -13,9 +13,22 @@ namespace ConsoleApplication1
 	class Program
 	{
 		static void Main(string[] args)
-		{
-			MostFrequentWords();
+		{		
+			TripAdvisorScraper tas = new TripAdvisorScraper("https://www.tripadvisor.com/Tourism-g298449-Metro_Manila_Luzon-Vacations.html");
+			tas.Process();
+			//MostFrequentWords();
 			//TestLoad2();
+			//SanitizeHTML();
+		}
+
+		public static void SanitizeHTML()
+		{
+			var url = "http://www.wheninmanila.com/5-things-to-do-in-bonifacio-global-city/";
+			var webGet = new HtmlWeb();
+			HtmlDocument document = webGet.Load(url);
+			string tmp = HtmlUtility.SanitizeHtml(document.DocumentNode.InnerHtml);
+
+			Console.ReadLine();
 		}
 
 		public static void MostFrequentWords()
@@ -89,11 +102,6 @@ namespace ConsoleApplication1
 
 		internal static string RemoveUnwantedTags(HtmlDocument data)
 		{
-			//if (string.IsNullOrEmpty(data)) return string.Empty;
-
-			//var document = new HtmlDocument();
-			//document.LoadHtml(data);
-
 			// remove scripts and styles
 			data.DocumentNode.Descendants()
 				.Where(n => n.Name == "script" || n.Name == "style" || n.Name == "#script")
@@ -101,79 +109,6 @@ namespace ConsoleApplication1
 				.ForEach(n => n.Remove());
 
 			return RemoveHTMLTags(data.DocumentNode.InnerText);
-
-			//var acceptableTags = new String[] { }; //"strong", "em", "u"
-
-			//var nodes = new Queue<HtmlNode>(data.DocumentNode.SelectNodes("./*|./text()"));
-			//while (nodes.Count > 0)
-			//{
-			//	var node = nodes.Dequeue();
-			//	var parentNode = node.ParentNode;
-
-			//	if (!acceptableTags.Contains(node.Name) && node.Name != "#text")
-			//	{
-			//		var childNodes = node.SelectNodes("./*|./text()");
-
-			//		if (childNodes != null)
-			//		{
-			//			foreach (var child in childNodes)
-			//			{
-			//				nodes.Enqueue(child);
-			//				parentNode.InsertBefore(child, node);
-			//			}
-			//		}
-
-			//		parentNode.RemoveChild(node);
-
-			//	}
-			//}
-
-			//return data.DocumentNode.InnerHtml;
-		}
-
-		public static void TestLoad2()
-		{
-			string main = "https://www.tripadvisor.com.ph";
-			// Things To Do URL
-			var url = "https://www.tripadvisor.com.ph/Attractions-g1758900-Activities-Taguig_City_Metro_Manila_Luzon.html#ATTRACTION_SORT_WRAPPER";
-			var webGet = new HtmlWeb();
-			HtmlDocument document = webGet.Load(url);
-			if (document != null)
-			{
-				// Get Top Things To Do list
-				var topPlacesNode = document.DocumentNode
-							.Descendants("div")
-							.Where(d =>
-							   d.Attributes.Contains("class")
-							   &&
-							   d.Attributes["class"].Value.Contains("listing_title")
-							);
-				foreach (var topPlace in topPlacesNode)
-				{
-					Console.WriteLine("ITINERARY: " + topPlace.InnerText);	//Get name
-					var link = topPlace.Descendants("a").First().GetAttributeValue("href", null); //Get url
-					var reviewLink = main + link;
-					Console.WriteLine("URL: " + reviewLink);
-
-					// Get Reviews
-					document = webGet.Load(reviewLink);
-					var reviewsNode = document.DocumentNode
-							.Descendants("p")
-							.Where(d =>
-							   d.Attributes.Contains("class")
-							   &&
-							   d.Attributes["class"].Value.Contains("partial_entry")
-							);
-					foreach (var review in reviewsNode)
-					{
-						Console.WriteLine("REVIEW: " + review.InnerText); 
-					}
-
-					Console.WriteLine(Environment.NewLine);
-					
-				}
-			}
-			Console.ReadLine();
 		}
 
 		public static void TestLoad()
